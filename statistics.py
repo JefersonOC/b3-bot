@@ -17,7 +17,7 @@ def main():
     num = 0
 
     json = requests.get(
-        "https://mfinance.com.br/api/v1/stocks/historicals/IBOV?months=12")  # 1 YEAR
+        "https://mfinance.com.br/api/v1/stocks/historicals/IBOV?months=120")  # 10 YEAR
     json = json.json()
     for stock in json['historicals']:
         date = pd.Timestamp(stock['date'])
