@@ -60,7 +60,7 @@ opcoesDefault = input("Utilizar opcoes default? [s/n] ")
 gameDefinition = None
 
 if(opcoesDefault.strip().lower() == 's'):
-    gameDefinition = GameDefinition(7, 5, 5, 4, 200, 180)
+    gameDefinition = GameDefinition(8, 4, 5, 4, 200, 170)
 else:
     pares = input("Digite a quantidade de numeros pares que deseja: ")
     primos = input("Digite a quantidade de numeros primos: ")
@@ -73,9 +73,8 @@ else:
     gameDefinition = GameDefinition(
         pares, primos, multiploTres, fibonacci, valorMaximo, valorMinimo)
 
-# capturar 5 numeros que menos sairam no geral (https://www.lotoloto.com.br/lotofacil/)
-removedNumbers = input(
-    "Digite os numeros que deseja remover separados por virgulas (5 a 7): ")
+# https://asloterias.com.br/numeros-menos-sorteados-lotofacil
+removedNumbers = "8,16,7,6,21,15"
 removedNumbers = list((int(x) for x in removedNumbers.split(',')))
 gameDefinition.finalNumbers = [
     i for i in ALL_POSSIBILITIES if i not in removedNumbers]

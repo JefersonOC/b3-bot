@@ -1,34 +1,21 @@
 
 """
+Melhores Ações com Bons descontos
 https://en.wikipedia.org/wiki/Magic_formula_investing
-http://bibliotecadigital.fgv.br/dspace/bitstream/handle/10438/15280/Tese%20-%20Leonardo%20Milane%20-%20Magic%20Formula.pdf?sequence=1
 
-O objetivo aqui é rankear as ações pela formula de greenblat, temos a API do statusinvest
-aberta que nos fornece os indicadores necessarios.
+O objetivo aqui é rankear as ações pela formula de greenblat, temos a API do statusinvest aberta que nos fornece os indicadores necessarios.
 
 Existem duas versões da formula, a mais conhecida usa P/L e ROE, que atende a todo tipo
-de ação, a outra usa EV/EBIT e ROIC, que não serve para bancos, pois os mesmos nao possuem
+de ação, a outra usa EV/EBIT (Enterprise Value/EBITDA) e ROIC, que não serve para bancos, pois os mesmos nao possuem
 ROIC, sendo excluidos automaticamente.
 
-As ações são ordenadas primeiro por P/L, recebendo nota, o menor P/L recebe a 
-maior nota(numero total de ações que participam do ranking) e o maior P/L 
-recebe 1. 
-O mesmo processo é feito para o ROE, sendo que o maior ROE recebe a
-maior nota. 
+As ações são ordenadas primeiro por P/L, recebendo nota, 
+o menor P/L recebe a maior nota(numero total de ações que participam do ranking) 
+e o maior P/L recebe 1. 
+
+O mesmo processo é feito para o ROE, sendo que o maior ROE recebe a maior nota. 
+
 A soma das duas notas determina a classificação do ranking.
-
-Ex:
-MARFRIG: (BARATA)
-    EV   27 bi 
-    EBIT  7 bi 
-EV / EBIT = 3,85
-EBIT / EV = 0,250%
-
-WEG: (CARA)
-    EV    150bi
-    EBIT  2 bi
-EV / EBIT = 75
-EBIT / EV = 0,013%
 """
 import requests
 import json
@@ -82,6 +69,10 @@ def greenblatt(category):
             
 
     stocksJson.sort(key=lambda x: (x["final_Score"]), reverse=True)
+
+    with open("greenblat.json", "w") as outfile:
+        outfile.write(json.dumps(stocksJson, indent=4, sort_keys=False))
+
     return json.dumps(stocksJson, indent=4)
 
 print(greenblatt("cat1"))
