@@ -84,6 +84,9 @@ def graham(advanced):
     for stock in stocksJson:
         stock['margem'] = ('%.2f' % round(stock['margem'], 2)) + '%'
 
+    with open("graham.json", "w") as outfile:
+        outfile.write(json.dumps(stocksJson, indent=4, sort_keys=False))
+
     return json.dumps(stocksJson, indent=4)
 
 print(graham(True))
