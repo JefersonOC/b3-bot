@@ -12,7 +12,7 @@ def main():
                     x["ticker"] + ".SA"
                 try:
                     response = requests.get(api).json()
-                    if float(response["data"]["rsi14"]) <= 30:
+                    if float(response["data"]["rsi14"]) < 30:
                         print("===============================")
                         print("COMPANY  >> " + str(x["companyName"]))
                         print("SCORE    >> " + str(x["final_Score"]))
