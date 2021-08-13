@@ -1,1 +1,1 @@
-clear && python3 -B strategy.py
+python3 -B strategy.py

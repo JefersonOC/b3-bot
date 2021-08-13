@@ -7,7 +7,7 @@ def main():
     api = "http://159.65.193.229:9090/fetch/greenblatt"
     try:
         data = requests.get(api).json()
-        for x in data["data"][:50]:
+        for x in data["data"][:20]:
             api = "http://159.65.193.229:9090/fetch/indicators?stock=" + \
                 x["ticker"] + ".SA"
             try:
